@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col">
                         <button style="font-size: 14px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            <i class="fas fa-plus"></i> Tambah Fitur
+                            <i class="fas fa-plus"></i> Tambah Invitation
                           </button>
                     </div>
                 </div>
@@ -30,30 +30,24 @@
                           <thead>
                               <tr>
                                   <th>No</th>
-                                  <th>Gambar</th>
-                                  <th>Fitur</th>
-                                  <th>Deskripsi</th>
-                                  <th>Aksi</th>
+                                  <th>Nama Pembeli</th>
+                                  <th>Data Invitation</th>
                                   <th></th>
                               </tr>
                           </thead>
                           <tbody>
-                              @foreach ($fiturs as $fitur)
+                              @foreach ($invitations as $invitation)
                               <tr>
                                   <td>{{$loop->iteration}}</td>
-                                  <td><img src="{{asset('storage/fitur/'.$fitur->image)}}" width="80px" alt=""></td>
-                                  <td>{{$fitur->nama_fitur}}</td>
-                                  <td>{{$fitur->desc}}</td>
-                                  <td>
-                                    <button style="font-size: 14px;" id="cek" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdropEdit" data-route = "{{route('Fitur.update', $fitur->id)}}" data-image = "{{asset('storage/fitur/'.$fitur->image)}}" data-nama ="{{$fitur->nama_fitur}}" data-desc = "{{$fitur->desc}}">
-                                      Edit
-                                    </button>
-                                  </td>
-                                  <form action="{{route('Fitur.destroy', $fitur->id)}}" method="POST">
+                                  <td>{{$invitation->nama}}</td>
+                                  <td><a href="{{route('Recipient.index')}}" class="btn btn-primary">
+                                          Data Invitation
+                                      </a></td>
+                                  <form action="{{route('Invitation.destroy', $invitation->id)}}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <td>
-                                      <button onclick="return confirm('Apakah Kamu Yakin Menghapus Fitur Ini ?')">Hapus</button>
+                                      <button onclick="return confirm('Apakah Kamu Yakin Menghapus Invitation Ini ?')">Hapus</button>
                                   </td>
                                   </form>
                               </tr>   
@@ -73,33 +67,19 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Tambah Fitur</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">Tambah Invitation</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action="{{route('Fitur.store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('Invitation.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Gambar Fitur</label>
-                  <input type="file" name="image" class="form-control @error('image') is-invalid @enderror"  aria-describedby="emailHelp">
-                  @error('image')
+                  <label for="exampleInputPassword1" class="form-label">Nama</label>
+                  <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror">
+                  @error('nama')
                         <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
                 </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Nama Fitur</label>
-                  <input type="text" name="nama_fitur" class="form-control @error('nama_fitur') is-invalid @enderror">
-                  @error('nama_fitur')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                  @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Deskripsi</label>
-                    <textarea class="form-control @error('nama_fitur') is-invalid @enderror" name="desc"  cols="30" rows="10"></textarea>
-                    @error('desc')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                  </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

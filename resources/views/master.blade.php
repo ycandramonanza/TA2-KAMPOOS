@@ -54,22 +54,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <div class="navbar-right" style="margin-right:auto">
-                    <ul class="nav navbar-nav">
-                                <!-- Menu Footer-->
-                                <li class="user-footer">
-                                    <div class="pull-right">
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                            <button class="btn btn-default btn-flat">Sign out    <i class="fas fa-sign-out-alt"></i></button>
-                                        </form>
-                                        
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
             </nav>
         </header>
         <div class="wrapper row-offcanvas row-offcanvas-left">
@@ -93,32 +77,22 @@
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-laptop"></i>
-                                <span>UI WeStory</span>
+                                <span>MENU</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="{{route('Fitur.index')}}"><i class="fas fa-clipboard-list"></i> Fitur</a></li>
-                                <li><a href="pages/UI/icons.html"><i class="fa fa-angle-double-right"></i> Icons</a></li>
-                                <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Buttons</a></li>
-                                <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
-                                <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li>
+                                <li><a href="pages/UI/icons.html"><i class="fa fa-angle-double-right"></i> Paket</a></li>
+                                <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Testimoni</a></li>
+                                <li><a href="{{route('Invitation.index')}}"><i class="fa fa-angle-double-right"></i>Invitation</a></li>
+                                <li><a href="{{route('Order.index')}}"><i class="fa fa-angle-double-right"></i>Orders</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="pages/widgets.html">
-                                <i class="fa fa-th"></i> <span>Widgets</span> <small class="badge pull-right bg-green">new</small>
-                            </a>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-edit"></i> <span>Forms</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/forms/general.html"><i class="fa fa-angle-double-right"></i> General Elements</a></li>
-                                <li><a href="pages/forms/advanced.html"><i class="fa fa-angle-double-right"></i> Advanced Elements</a></li>
-                                <li><a href="pages/forms/editors.html"><i class="fa fa-angle-double-right"></i> Editors</a></li>
-                            </ul>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button onclick="return confirm('Apakah Kamu Yakin ingin Sign Out ?')" class="btn btn-default btn-flat">Sign out    <i class="fas fa-sign-out-alt"></i></button>
+                            </form> 
                         </li>
                     </ul>
                 </section>

@@ -22,7 +22,16 @@ Route::resource('WeStory', DashboardController::class);
 
 // CRUD FITUR
 Route::resource('Fitur', FiturController::class);
-
+// CRUD INVITATION
+Route::resource('Invitation', InvitationController::class);
+// CRUD ORDER
+Route::resource('Order', OrderController::class);
+// CRUD PEMBELI
+Route::resource('Pembeli', PembeliController::class);
+// CRUD RECIPIENT
+Route::resource('Recipient', RecipientController::class);
+// TEMA
+Route::get('Undangan/{id}', 'TemaController@silver')->name('undangan.silver');
 
 
 Auth::routes();

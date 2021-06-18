@@ -30,26 +30,22 @@
                           <thead>
                               <tr>
                                   <th>No</th>
-                                  <th>Gambar</th>
-                                  <th>Fitur</th>
-                                  <th>Deskripsi</th>
-                                  <th>Aksi</th>
+                                  <th>Nama</th>
+                                  <th>Alamat</th>
+                                  <th>Link Undangan</th>
                                   <th></th>
                               </tr>
                           </thead>
                           <tbody>
-                              @foreach ($fiturs as $fitur)
+                              @foreach ($recipients as $recipient)
                               <tr>
                                   <td>{{$loop->iteration}}</td>
-                                  <td><img src="{{asset('storage/fitur/'.$fitur->image)}}" width="80px" alt=""></td>
-                                  <td>{{$fitur->nama_fitur}}</td>
-                                  <td>{{$fitur->desc}}</td>
+                                  <td>{{$recipient->nama}}</td>
+                                  <td>{{$recipient->alamat}}</td>
                                   <td>
-                                    <button style="font-size: 14px;" id="cek" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdropEdit" data-route = "{{route('Fitur.update', $fitur->id)}}" data-image = "{{asset('storage/fitur/'.$fitur->image)}}" data-nama ="{{$fitur->nama_fitur}}" data-desc = "{{$fitur->desc}}">
-                                      Edit
-                                    </button>
+                                      <a href="{{route('undangan.silver', $recipient->id)}}" class="btn btn-success">Link Undangan</a>
                                   </td>
-                                  <form action="{{route('Fitur.destroy', $fitur->id)}}" method="POST">
+                                  <form action="" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <td>

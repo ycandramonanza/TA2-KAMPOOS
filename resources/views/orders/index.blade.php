@@ -30,26 +30,32 @@
                           <thead>
                               <tr>
                                   <th>No</th>
-                                  <th>Gambar</th>
-                                  <th>Fitur</th>
-                                  <th>Deskripsi</th>
-                                  <th>Aksi</th>
+                                  <th>Nama Pembeli</th>
+                                  <th>Paket</th>
+                                  <th>Tempat Acara</th>
+                                  <th>Tanggal Acara</th>
+                                  <th>Confirm</th>
                                   <th></th>
                               </tr>
                           </thead>
                           <tbody>
-                              @foreach ($fiturs as $fitur)
+                              @foreach ($orders as $order)
                               <tr>
                                   <td>{{$loop->iteration}}</td>
-                                  <td><img src="{{asset('storage/fitur/'.$fitur->image)}}" width="80px" alt=""></td>
-                                  <td>{{$fitur->nama_fitur}}</td>
-                                  <td>{{$fitur->desc}}</td>
+                                  <td>{{$order->nama}}</td>
+                                  <td>{{$order->paket}}</td>
+                                  <td>{{$order->tempat_acara}}</td>
+                                  <td>{{$order->tanggal_acara}}</td>
+                                  <form action="{{route('Invitation.store')}}" method="POST">
+                                    @csrf
                                   <td>
-                                    <button style="font-size: 14px;" id="cek" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdropEdit" data-route = "{{route('Fitur.update', $fitur->id)}}" data-image = "{{asset('storage/fitur/'.$fitur->image)}}" data-nama ="{{$fitur->nama_fitur}}" data-desc = "{{$fitur->desc}}">
-                                      Edit
-                                    </button>
+                                    <input type="hidden" name="nama" value="{{$order->nama}}">
+                                    <button type="submit" onclick="return confirm('Apakah Order ini akan di Lanjut ?')" class="btn btn-success">
+                                            Konfirmasi
+                                      </button>
                                   </td>
-                                  <form action="{{route('Fitur.destroy', $fitur->id)}}" method="POST">
+                                </form>
+                                  <form action="" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <td>

@@ -78,7 +78,7 @@ class FiturController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
         //
     }
@@ -90,9 +90,36 @@ class FiturController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FiturRequest $request, fitur $Fitur)
     {
-        //
+        if($request->image){
+            if(\File::exists('storage/fitur/'.$Fitur->image)){
+                \File::delete('storage/fitur/'.$Fitur->image);
+            }
+            $data = $request->all();
+            $data['image'] = $request->file('image');
+            $filename = time() . '.' . $data['image']->getClientOriginalExtension();
+            $request->file('image')->storeAs('public/fitur/'. $filename,  ''); 
+
+         
+           
+            $Fitur->update([
+                'image'      => $filename,
+                'nama_fitur' => $request->nama_fitur,
+                'desc'       => $request->desc
+            ]);
+
+            return redirect()->route('Fitur.index', ['Fitur' => $Fitur->id])->with('pesan', "Fitur Berhasil Di Ubah");
+        }else{
+            $Fitur->update([
+                'nama_fitur' => $request->nama_fitur,
+                'desc'       => $request->desc
+
+            ]);
+
+            return redirect()->route('Fitur.index', ['Fitur' => $Fitur->id])->with('pesan', "Fitur Berhasil Di Ubah");
+        }
+        
     }
 
     /**

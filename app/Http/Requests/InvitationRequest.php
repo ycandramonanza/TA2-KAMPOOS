@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FiturRequest extends FormRequest
+class InvitationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class FiturRequest extends FormRequest
     public function rules()
     {
         return [
-            'image'      => '',
-            'nama_fitur' => 'required',
-            'desc'       => 'required'
+            'nama' => 'required'
         ];
     }
 }
