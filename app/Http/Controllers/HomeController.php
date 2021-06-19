@@ -24,6 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+        if(Auth::user()->role == 'admin'){
+            return view('admin.home');
+        }elseif(Auth::user()->role == 'pembeli'){
+            return redirect('/Digital-Invitation');
+        }
+        
     }
 }

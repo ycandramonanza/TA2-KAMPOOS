@@ -16,8 +16,12 @@ class FiturController extends Controller
      */
     public function index()
     {
-        $fiturs = fitur::all();
-       return view('admin.fitur.index', compact('fiturs'));
+        if(Auth::user()->role == 'admin'){
+            $fiturs = fitur::all();
+            return view('admin.fitur.index', compact('fiturs'));
+        }else{
+            return redirect('/Digital-Invitation');
+        }
     }
 
     /**
@@ -38,26 +42,24 @@ class FiturController extends Controller
      */
     public function store(FiturRequest $request)
     {
-        $data = $request->all();
-        $data['image'] = $request->file('image');
-        $filename = time() . '.' . $data['image']->getClientOriginalExtension();
-        $request->file('image')->storeAs('public/fitur/'. $filename,  ''); 
-    
-        // dd($filename);
-        // $request->hasfile('image'))
-        //     $image = $request->image->file('image');
-        //     dd($image);
-          
-           
-        
+        if(Auth::user()->role == 'admin'){
 
-        fitur::create([
-            'image'      => $filename,
-            'nama_fitur' => $request->nama_fitur,
-            'desc'       => $request->desc
-        ]);
-        $request->session()->flash('pesan', "Fitur $request->nama_fitur Berhasil di Tambahkan");
-        return redirect()->route('Fitur.index');
+            $data = $request->all();
+            $data['image'] = $request->file('image');
+            $filename = time() . '.' . $data['image']->getClientOriginalExtension();
+            $request->file('image')->storeAs('public/fitur/'. $filename,  ''); 
+    
+    
+            fitur::create([
+                'image'      => $filename,
+                'nama_fitur' => $request->nama_fitur,
+                'desc'       => $request->desc
+            ]);
+            $request->session()->flash('pesan', "Fitur $request->nama_fitur Berhasil di Tambahkan");
+            return redirect()->route('Fitur.index');
+
+        }
+       
        
     }
 

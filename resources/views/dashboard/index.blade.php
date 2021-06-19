@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Digital Invitations</title>
     {{-- Bootstrap --}}
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
     {{-- font --}}
@@ -25,7 +25,7 @@
           <img src="{{asset('img/1.jpg')}}" style="filter: brightness(55%); height:500px" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <img src="{{asset('img/logo2.png')}}" style="width:150px; margin-top:100px" alt="WeStory">
-            <h1 style="margin-top:20px">WeStory</h1>
+            <h1 style="margin-top:20px">Digital Invitations</h1>
             <p>Membuat Undangan Anda Menjadi Lebih Menarik</p>
           </div>
         </div>
@@ -33,7 +33,7 @@
           <img src="{{asset('img/2.jpg')}}" style="filter: brightness(55%); height:500px" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <img src="{{asset('img/logo3.png')}}" style="width:150px; margin-top:100px" alt="WeStory">
-            <h1 style="margin-top:20px">WeStory</h1>
+            <h1 style="margin-top:20px">Digital Invitations</h1>
             <p>Dalam Satu Tautan Yang Mudah Dikirimkan</p>
           </div>
         </div>
@@ -41,7 +41,7 @@
           <img src="{{asset('img/3.jpg')}}" style="filter: brightness(55%); height:500px"  class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <img src="{{asset('img/logo.png')}}" style="width:150px; margin-top:100px" alt="WeStory">
-            <h1 style="margin-top:20px">WeStory</h1>
+            <h1 style="margin-top:20px">Digital Invitations</h1>
             <p>Solusi Undangan Yang Efisen di Era Digital</p>
           </div>
         </div>
@@ -59,15 +59,25 @@
     <nav class="navbar navbar-expand-lg  sticky-top" style="background-color: rgb(99, 173, 143)
     ; color:white">
         <div class="container-fluid">
-          <h1 class="navbar-brand" href="#">WeStory</h1>
+          <h1 class="navbar-brand" href="#">Digital Invitations</h1>
           <button class="navbar-toggler"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"><i style="color: white" class="fas fa-bars"></i></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav mx-auto">
-              <a id="menu" class="nav-link active" aria-current="page" href="#">Home</a>
-              <a  id="menu" class="nav-link" href="#">Fitur</a>
-              <a  id="menu" class="nav-link" href="#">Paket Harga</a>
+              <a id="menu" class="nav-link active" aria-current="page" href="#"><i class="fas fa-home"></i> Home</a>
+              <a  id="menu" class="nav-link" href="#"><i class="fas fa-rocket"></i> Fitur</a>
+              <a  id="menu" class="nav-link" href="#"><i class="fas fa-tags"></i> Paket Harga</a>
+              @if (Auth::guest())
+              <a  id="menu" class="nav-link" href="{{route('login')}}"><i class="fas fa-sign-in-alt"></i> Login</a>
+              <a  id="menu" class="nav-link" href="{{route('register')}}"><i class="fas fa-key"></i> Regiter</a>
+              @endif
+              @auth
+              <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button style="color:white" onclick="return confirm('Apakah Kamu Yakin ingin Sign Out ?')" class="btn btn-default btn-flat">Sign out    <i class="fas fa-sign-out-alt"></i></button>
+            </form>  
+              @endauth
             </div>
           </div>
         </div>
@@ -78,7 +88,7 @@
         <div class="container">
           <div  class="row mt-5">
             <div class="col" align="center">
-                <h2 >Fitur Yang Ada di <span style="font-size: 50px" id="judulFitur">WeStory</span></h2>
+                <h2 >Fitur Yang Ada di <b style="font-size: 30px; color: rgb(82, 139, 116)">Digital Invitations</b></h2>
             </div>
           </div>
           <br>
@@ -104,12 +114,113 @@
       <div id="content2">
         <div class="container">
           <div class="row">
-            <div class="col" style="color: white">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet ducimus voluptatibus est temporibus nam! Molestiae totam quos eligendi ducimus placeat aliquam nam quaerat odit numquam illum voluptatibus itaque aspernatur sit saepe minima, ea unde nisi quia nesciunt? Quia impedit unde dolores minima dolore repellat ratione possimus laboriosam accusamus, eos nemo beatae aliquid corrupti tempora quibusdam tempore quos modi nisi libero, quidem sit? Quas distinctio illum placeat. Incidunt blanditiis dolor impedit sed enim repellendus debitis odit, mollitia veritatis autem? Neque quod obcaecati sed soluta iusto cumque beatae, omnis magni, doloribus amet nulla unde enim tenetur provident inventore laborum adipisci mollitia, repellendus perspiciatis. Consequatur aliquid repellendus ratione quaerat explicabo dicta incidunt odit doloremque? Quas autem animi quisquam? Nesciunt, odio possimus sequi minus eos itaque expedita ipsam molestias repellendus eligendi nisi laboriosam unde rem earum quam, ex doloremque. Totam numquam, voluptates facilis veritatis labore optio sit earum amet ad. Provident beatae consectetur praesentium aspernatur omnis labore eius eum facere obcaecati quaerat eligendi consequuntur rerum, at error iusto possimus modi! Magni eum ipsa obcaecati deleniti asperiores labore laudantium possimus dolor fuga dicta soluta tempore quibusdam repellat velit consectetur, aperiam corporis dolores sapiente inventore exercitationem quo tempora. Tenetur cumque odio harum, architecto optio excepturi incidunt eius rem quasi veritatis aliquam dolorem consequuntur facilis veniam deserunt autem ex corrupti reprehenderit! Laboriosam officiis perspiciatis repellendus veniam excepturi in eligendi tempora nobis, aliquam vel, optio quo rerum vero esse, nam quasi quam ipsam vitae maiores assumenda. Debitis perspiciatis nesciunt totam labore quasi explicabo tempore pariatur aliquam qui? Ex, eaque debitis corporis sequi numquam, provident quidem molestias architecto consequatur natus sit optio ab quo adipisci illum quos aperiam cupiditate fugit exercitationem minus incidunt distinctio pariatur! Illo recusandae soluta accusamus molestias fugiat veniam delectus? Est, et inventore rerum perferendis cupiditate recusandae, harum expedita delectus voluptate quo incidunt eius? Molestias aliquam asperiores maxime esse, non doloremque ut veniam quos nam enim sit, minima assumenda et quibusdam ad veritatis numquam error corporis delectus cumque. Iusto beatae praesentium repellat quasi fuga, perspiciatis sed quae tenetur libero, neque quam soluta. Suscipit, enim consequuntur consectetur dignissimos amet similique soluta blanditiis perspiciatis earum. Voluptates nobis doloremque blanditiis iure assumenda quo enim in deleniti inventore sunt, consectetur praesentium cumque qui, at vel, non tenetur quasi corrupti. Inventore dolore dolor aut labore quas, architecto amet commodi, officia eius natus ipsa mollitia cupiditate unde quisquam! Officia tempora quos, voluptatem alias inventore architecto qui, quod autem aliquam rem officiis, unde cum. Quo ullam culpa in dicta beatae, quibusdam officia corrupti, modi quaerat voluptate deserunt hic facilis eum. Veniam fugit, alias beatae tempore voluptatum dolorem voluptatibus. Culpa, non quisquam corporis autem officiis quibusdam tenetur ex obcaecati reiciendis molestias harum accusamus. Natus, enim nesciunt esse nostrum fugit odit quam inventore earum nihil non numquam alias deleniti error culpa dicta, officia beatae expedita quasi sapiente, quo ab! Veritatis laboriosam culpa, amet vel obcaecati aliquid, minus, error quae maiores quam laborum similique incidunt deleniti nostrum corporis consequatur nam hic? Suscipit, quo saepe alias sint natus quisquam repudiandae nam nobis velit totam aut, praesentium provident?
+            <div class="col" align="center" style="color: white">
+              <h2 style="font-size:38px; margin-top:50px" >Daftar Harga</h2>
+                <div class="row">
+                  <h4 style="font-size:20px">Paket Undangan Web <b style="color:rgb(99, 173, 143); font-size:25px">Digital Invitation </b> </h4>
+                </div>
             </div>
+          </div>
+          <br>
+          <br>
+          {{-- content Paket --}}
+          <div class="row">
+            @foreach ($pakets as $paket)
+              <div class="col-12 col-md-4">
+                <div class="card">
+                  <div class="card-body" align="center">
+                    <h2 style=" font-size:40px">{{$paket->nama_paket}}</h2>
+                    <img width="100px" src="{{asset('storage/paket/'.$paket->image)}}" alt="">
+                      <div class="row">
+                          <div class="col">
+                            <span style=" font-size:40px; color:red"><del><b>Rp.</b>{{number_format($paket->harga)}}<del></span>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <span style=" font-size:30px"><b>Rp.</b>{{number_format($paket->harga_diskon)}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col" align="left">
+                          <ul>
+                              <li>{{$paket->fitur1}}</li>
+                              <li>{{$paket->fitur2}}</li>
+                              <li>{{$paket->fitur3}}</li>
+                              <li>{{$paket->fitur4}}</li>
+                              <li>{{$paket->fitur5}}</li>
+                              <li>{{$paket->fitur6}}</li>
+                              <li>{{$paket->fitur7}}</li>
+                              <li>{{$paket->fitur8}}</li>
+                              <li>{{$paket->fitur9}}</li>
+                              <li>{{$paket->fitur10}}</li>
+                              
+                          </ul>
+                      </div>
+                  </div>
+                  @auth
+                  <div class="row">
+                    <div class="col">
+                        <button class="btn btn-success"><i class="fas fa-cart-plus"></i> Pesan Sekarang</button>
+                    </div>
+                </div>
+                  @endauth
+                  </div>
+                </div> 
+             
+              </div>
+              @endforeach
           </div>
         </div>
       </div>
+           {{-- content Testimoni --}}
+      <div class="div" id="testimoni">
+        <div class="row" style="margin-top:100px">
+            <div class="col">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, nam. Eos, rerum blanditiis natus earum tempora quidem provident alias, velit consequuntur neque quos. Illum corrupti commodi quisquam asperiores reprehenderit officiis explicabo, facilis voluptatum qui officia vitae suscipit repellendus sequi ab. Id minus consectetur distinctio vel quisquam a impedit, quasi officia non quis unde nisi provident praesentium exercitationem tenetur modi ad? Delectus, praesentium! Eum cum delectus dolorum? Repellat sunt enim optio, aut voluptates pariatur, eum necessitatibus quasi, nisi laboriosam maiores laudantium soluta animi veniam sint facilis nam? Omnis mollitia sint ex incidunt unde deleniti debitis illo voluptates voluptas fugit voluptatibus doloribus consequatur, aspernatur odit quas modi reprehenderit inventore fuga exercitationem error, suscipit officia? Ratione adipisci odio necessitatibus repellat est iusto? Laudantium vero nam deserunt fuga ex facere, tempore dolorum, alias nobis laboriosam itaque beatae eius? Voluptate doloremque esse, distinctio corporis commodi laborum tempore eum est atque consectetur, asperiores sequi a? Unde, facilis impedit in eaque ut, suscipit perferendis error eum laudantium earum, voluptatum aperiam adipisci accusantium qui. Temporibus, recusandae qui facilis ut fuga molestias perferendis obcaecati exercitationem delectus nam labore commodi reprehenderit quae, officia omnis laborum iure id debitis? Commodi voluptatem optio voluptates, magni ipsa ipsam. Numquam, voluptates eius. Praesentium veniam nihil voluptates possimus quam cumque qui culpa ducimus ipsam soluta, porro quibusdam sit explicabo ad architecto. Molestias, sit quis asperiores saepe eligendi assumenda est soluta praesentium, tempore voluptatum non! Nulla, odio! Voluptatum omnis dolorum eaque similique ducimus sequi est, esse reprehenderit ipsa a, aliquid obcaecati eos dolore nemo repellat, voluptate veritatis quam commodi ullam. Libero fugit hic totam deserunt officia asperiores ad repudiandae! Non temporibus inventore expedita exercitationem aliquid soluta, rem reprehenderit aperiam accusantium doloribus pariatur provident eos ab nulla atque mollitia nihil eaque. Et aspernatur molestias vero maiores tenetur fugiat, velit alias debitis. Consequuntur ratione natus unde nulla aut!
+            </div>
+        </div>
+    </div>
+      @auth
+          
+      
+      @if (Auth::user()->role == 'pembeli')
+           {{-- Form Testimoni --}}
+      <div id="testimonies">
+        <div class="container">
+          <div class="row" style="margin-top:50px">
+            <div class="col-12" align="center">
+                 <h2 style="font-size:30px"><b>Testimoni</b></h2>
+            </div>
+            @if (session('pesan'))
+            <div class="alert alert-success">
+                {{ session('pesan') }}
+            </div>
+             @endif
+             @if (session('danger'))
+            <div class="alert alert-danger">
+                {{ session('danger') }}
+            </div>
+             @endif
+            <form action="{{route('Testimoni.store')}}" method="POST">
+              @csrf
+             <div class="col-12">
+                   <textarea class="form-control" name="testimoni" id="testimoni"  rows="10"></textarea>
+                   <div class="row">
+                        <div class="col text-end">
+                          <button type="submit"  class="btn btn-primary" style="margin-top:20px">
+                            <i class="fas fa-paper-plane"></i> Send 
+                           </button>
+                        </div>
+                   </div>
+             </div>
+            </form>
+       </div>
+        </div>
+    </div>
+      @endif
+      @endauth
+     
      
           
         

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\fitur;
-use App\Models\paket;
-class DashboardController extends Controller
+use App\Models\testimoni;
+use Auth;
+class TestimoniController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $pakets = paket::all();
-        $fiturs = fitur::all();
-        return view('dashboard.index', compact('fiturs','pakets'));
+        //
     }
 
     /**
@@ -37,7 +35,22 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // if(){
+
+        // }
+        $user_id = Auth::user()->id;
+        $testimoni = testimoni::where('user_id', $user_id)->with('testimoni')->count();
+
+        if($testimoni > 0){
+            return redirect('/Digital-Invitation/#testimonies')->with('danger', "Anda Sudah Pernah Memasukan Testimoni.");
+        }
+
+        testimoni::create([
+            'user_id'   => $user_id,
+            'testimoni' => $request->testimoni
+        ]);
+
+        return redirect('/Digital-Invitation/#testimonies')->with('pesan', "Testimoni Anda Berhasil Di Kirim.");
     }
 
     /**

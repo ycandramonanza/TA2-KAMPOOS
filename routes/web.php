@@ -18,10 +18,12 @@ Route::get('/', function () {
 });
 
 // Dashboard WeStory
-Route::resource('WeStory', DashboardController::class);
+Route::resource('Digital-Invitation', DashboardController::class);
 
 // CRUD FITUR
 Route::resource('Fitur', FiturController::class);
+// CRUD Paket
+Route::resource('Paket', PaketController::class);
 // CRUD INVITATION
 Route::resource('Invitation', InvitationController::class);
 // CRUD ORDER
@@ -30,7 +32,9 @@ Route::resource('Order', OrderController::class);
 Route::resource('Pembeli', PembeliController::class);
 // CRUD RECIPIENT
 Route::resource('Recipient', RecipientController::class);
-// TEMA
+// CRUD TESTIMONI
+Route::resource('Testimoni', TestimoniController::class);
+
 Route::get('Undangan/{id}', 'TemaController@silver')->name('undangan.silver');
 
 

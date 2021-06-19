@@ -43,7 +43,7 @@
         <header class="header">
             <a href="{{route('home')}}" class="logo" style="text-decoration: none">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
-                WeStory
+                Digital Invitation
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -82,7 +82,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="{{route('Fitur.index')}}"><i class="fas fa-clipboard-list"></i> Fitur</a></li>
-                                <li><a href="pages/UI/icons.html"><i class="fa fa-angle-double-right"></i> Paket</a></li>
+                                <li><a href="{{route('Paket.index')}}"><i class="fas fa-cubes"></i> Paket</a></li>
                                 <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Testimoni</a></li>
                                 <li><a href="{{route('Invitation.index')}}"><i class="fa fa-angle-double-right"></i>Invitation</a></li>
                                 <li><a href="{{route('Order.index')}}"><i class="fa fa-angle-double-right"></i>Orders</a></li>
@@ -103,7 +103,6 @@
                 <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Fitur WeStory
                 <small>Control panel</small>
             </h1>
         </section>

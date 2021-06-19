@@ -24,6 +24,11 @@
                                 @enderror
                             </div>
                         </div>
+                        
+                        {{-- Hidden Role --}}
+                            {{-- <div class="col-md-6">
+                                <input id="role" type="hidden" class="form-control @error('role') is-invalid @enderror" name="role"  value="pembeli" required autocomplete="role" autofocus>
+                            </div> --}}
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
