@@ -41,7 +41,7 @@
                               @foreach ($fiturs as $fitur)
                               <tr>
                                   <td>{{$loop->iteration}}</td>
-                                  <td><img src="{{asset('storage/fitur/'.$fitur->image)}}" width="80px" alt=""></td>
+                                  <td><img src="{{asset('storage/public/fitur/'.$fitur->image)}}" width="80px" alt=""></td>
                                   <td>{{$fitur->nama_fitur}}</td>
                                   <td>{{$fitur->desc}}</td>
                                   <td>

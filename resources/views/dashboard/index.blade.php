@@ -97,7 +97,7 @@
             <div class="col-xs-12 col-sm-6 col-md-4" align="center" style="margin-bottom:10px">
               <div class="card" id="cardFitur">
                 <div class="card-body">
-                  <img class="img-fluid" id="imageFitur" style="width: 200px" src="{{asset('storage/fitur/'. $fitur->image)}}" alt="">
+                  <img class="img-fluid" id="imageFitur" style="width: 200px" src="{{asset('storage/public/fitur/'. $fitur->image)}}" alt="">
                    <br>
                    <br>
                   <h1 class="card-title">{{$fitur->nama_fitur}}</h1>
