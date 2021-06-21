@@ -4,14 +4,7 @@
 <link rel="stylesheet" href="{{asset('css/jquery.dataTables.min.css')}}">
 <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/style.css')}}">
-                <div class="row">
-                    <div class="col">
-                        <button style="font-size: 14px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            <i class="fas fa-plus"></i> Tambah Paket
-                          </button>
-                    </div>
-                </div>
-                <br>
+        
                 @if (session('pesan'))
                     <div class="alert alert-success">
                         {{ session('pesan') }}
@@ -30,38 +23,22 @@
                           <thead>
                               <tr>
                                   <th>No</th>
-                                  <th>Gambar</th>
-                                  <th>Nama Paket</th>
-                                  <th>Harga</th>
-                                  <th>Harga Diskon</th>
-                                  <th>Fitur</th>
-                                  <th>Edit</th>
-                                  <th>Hapus</th>
+                                  <th>Customer</th>
+                                  <th>Testimoni</th>
+                                  <th>Aksi</th>
                               </tr>
                           </thead>
                           <tbody>
-                              @foreach ($pakets as $paket)
+                              @foreach ($testimonis as $testimoni)
                               <tr>
                                   <td>{{$loop->iteration}}</td>
-                                  <td><img src="{{asset('storage/paket/'.$paket->image)}}" width="80px" alt=""></td>
-                                  <td>{{$paket->nama_paket}}</td>
-                                  <td>{{$paket->harga}}</td>
-                                  <td>{{$paket->harga_diskon}}</td>
-                                  <td>
-                                    <button class="btn btn-primary" type="button" id="lihatFitur" data-bs-toggle="modal" data-bs-target="#staticBackdropLihatFitur" data-nama ="{{$paket->nama_paket}}" data-fitur1="{{$paket->fitur1}}" data-fitur2="{{$paket->fitur2}}" data-fitur3="{{$paket->fitur3}}" data-fitur4="{{$paket->fitur4}}" data-fitur5="{{$paket->fitur5}}" data-fitur6="{{$paket->fitur6}}" data-fitur7="{{$paket->fitur7}}" data-fitur8="{{$paket->fitur8}}" data-fitur9="{{$paket->fitur9}}" data-fitur10="{{$paket->fitur10}}">
-                                      <i class="fas fa-rocket"></i>
-                                    </button>
-                                  </td>
-                                  <td>
-                                    <button style="font-size: 14px;" id="editFitur" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdropEdit" data-namas ="{{$paket->nama_paket}}" data-harga="{{$paket->harga}}" data-diskon="{{$paket->harga_diskon}}" data-1="{{$paket->fitur1}}" data-fiturDua="{{$paket->fitur2}}" data-fiturTiga="{{$paket->fitur3}}" data-fiturEmpat="{{$paket->fitur4}}" data-fiturLima="{{$paket->fitur5}}" data-fiturEnam="{{$paket->fitur6}}" data-fiturTujuh="{{$paket->fitur7}}" data-fiturDelapan="{{$paket->fitur8}}" data-fiturSembilan="{{$paket->fitur9}}" data-fiturSepuluh="{{$paket->fitur10}}">
-                                      <i class="fas fa-edit"></i>
-                                    </button>
-                                  </td>
-                                  <form action="{{route('Paket.destroy', $paket->id)}}" method="POST">
+                                  <td>{{$testimoni->user->name}}</td>
+                                  <td>{{$testimoni->testimoni}}</td>
+                                  <form action="{{route('Testimoni.destroy', $testimoni->id)}}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <td>
-                                      <button class="btn btn-danger" onclick="return confirm('Apakah Kamu Yakin Menghapus Paket Ini ?')" style="font-size: 14px"><i class="far fa-trash-alt"></i></button>
+                                      <button class="btn btn-danger" onclick="return confirm('Apakah Kamu Yakin Menghapus Testimoni Ini ?')" style="font-size: 14px"><i class="far fa-trash-alt"></i></button>
                                   </td>
                                   </form>
                               </tr>   

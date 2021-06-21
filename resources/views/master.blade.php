@@ -83,7 +83,7 @@
                             <ul class="treeview-menu">
                                 <li><a href="{{route('Fitur.index')}}"><i class="fas fa-clipboard-list"></i> Fitur</a></li>
                                 <li><a href="{{route('Paket.index')}}"><i class="fas fa-cubes"></i> Paket</a></li>
-                                <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Testimoni</a></li>
+                                <li><a href="{{route('Testimoni.index')}}"><i class="far fa-comments"></i> Testimoni</a></li>
                                 <li><a href="{{route('Invitation.index')}}"><i class="fa fa-angle-double-right"></i>Invitation</a></li>
                                 <li><a href="{{route('Order.index')}}"><i class="fa fa-angle-double-right"></i>Orders</a></li>
                             </ul>

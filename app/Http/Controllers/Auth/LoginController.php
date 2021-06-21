@@ -39,7 +39,13 @@ class LoginController extends Controller
     }
 
     public function logout(){
-        Auth::logout();
-        return redirect('/login');
+        if(Auth::user()->role == 'admin'){
+            Auth::logout();
+            return redirect('/login');
+        }else if(Auth::user()->role == 'pembeli'){
+            Auth::logout();
+            return redirect('/Digital-Invitation');
+        }
+        
     }
 }

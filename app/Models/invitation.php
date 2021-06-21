@@ -10,7 +10,10 @@ class invitation extends Model
     use HasFactory;
     protected $guarded = [];
 
+    public function user(){
+       return $this->belongsTo(User::class, 'user_id', 'id');
+    }
     public function order(){
-        $this->belongsTo(order::class, 'pembeli_id', 'id');
+       return $this->belongsTo(order::class, 'order_id', 'id');
     }
 }

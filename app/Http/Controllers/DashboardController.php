@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\fitur;
 use App\Models\paket;
+use App\Models\testimoni;
 class DashboardController extends Controller
 {
     /**
@@ -16,7 +17,9 @@ class DashboardController extends Controller
     {
         $pakets = paket::all();
         $fiturs = fitur::all();
-        return view('dashboard.index', compact('fiturs','pakets'));
+        $testimonis = testimoni::orderBy('created_at', 'DESC')->paginate(3);
+        // dd($testimonis);
+        return view('dashboard.index', compact('fiturs','pakets','testimonis'));
     }
 
     /**

@@ -45,4 +45,10 @@ class User extends Authenticatable
     public function testimoni(){
         return $this->hasOne(testimoni::class, 'user_id', 'id');
     }
+    public function order(){
+        return $this->hasMany(order::class, 'user_id', 'id');
+    }
+    public function invitation(){
+        return $this->hasMany(invitation::class, 'user_id', 'id');
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\invitation;
 use App\Models\order;
+use App\Models\User;
 use App\Http\Requests\InvitationRequest;
 class InvitationController extends Controller
 {
@@ -15,7 +16,7 @@ class InvitationController extends Controller
      */
     public function index()
     {
-        $invitations = invitation::all();
+        $invitations = invitation::with('user')->get();
         return view('invitation.index', compact('invitations'));
     }
 
@@ -37,13 +38,17 @@ class InvitationController extends Controller
      */
     public function store(InvitationRequest $request)
     {
-       
-
+        $order = order::where('nama', $request->nama)->with('user')->first();
+        $user_id  = $order->user->id;
+        $order_id = $order->id;
+    
         invitation::create([
-            'nama' => $request->nama,
+            'user_id' => $user_id,
+            'order_id' => $order_id,
+            'nama'    => $request->nama,
         ]);
 
-        $order = order::where('nama',  'Khaerul Fahmi')->first();
+        $order = order::where('nama',  $request->nama)->first();
         $order->update([
             'status' => 1,
         ]);

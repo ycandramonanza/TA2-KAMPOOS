@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\order;
+use Auth;
 class OrderController extends Controller
 {
     /**
@@ -13,7 +14,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-       $orders = order::where('status', 0)->get();
+       $orders = order::where('status', 0)->with('user')->get();
+    //    dd($orders);
        return view('orders.index', compact('orders'));
     }
 
@@ -35,7 +37,25 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = Auth::user()->id;
+
+        $validated = $request->validate([
+            'nama'  => 'required',
+            'paket' => 'required',
+            'tempat_acara' => 'required',
+            'tanggal_acara' => 'required'
+        ]);
+
+        order::create([
+            'user_id'     => $user_id,
+            'nama'        => $validated['nama'],
+            'paket'       => $validated['paket'],
+            'tempat_acara' => $validated['tempat_acara'],
+            'tanggal_acara'=> $validated['tanggal_acara'],
+            'status'       => 0
+        ]);
+
+        return redirect('/Digital-Invitation/#content2')->with('order', "Pesanan Anda Sedang di Proses");
     }
 
     /**

@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            // $table->bigInteger('pembeli_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->string('nama');
             $table->string('paket');
             $table->string('tempat_acara');
@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
             $table->integer('status');
             $table->timestamps();
 
-            // $table->foreign('pembeli_id')->references('id')->on('pembelis')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
       
     }

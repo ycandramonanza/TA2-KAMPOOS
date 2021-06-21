@@ -107,8 +107,10 @@ class PaketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(paket $Paket)
     {
-        //
+        $Paket->delete();
+
+        return redirect()->route('Paket.index')->with('delete', "Paket $Paket->nama_paket Sudah Terhapus");
     }
 }

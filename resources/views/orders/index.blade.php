@@ -4,14 +4,6 @@
 <link rel="stylesheet" href="{{asset('css/jquery.dataTables.min.css')}}">
 <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/style.css')}}">
-                <div class="row">
-                    <div class="col">
-                        <button style="font-size: 14px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            <i class="fas fa-plus"></i> Tambah Fitur
-                          </button>
-                    </div>
-                </div>
-                <br>
                 @if (session('pesan'))
                     <div class="alert alert-success">
                         {{ session('pesan') }}
@@ -30,7 +22,8 @@
                           <thead>
                               <tr>
                                   <th>No</th>
-                                  <th>Nama Pembeli</th>
+                                  <th>Nama Pemesan</th>
+                                  <th>Nama Pengantin/ Pemilik Acara</th>
                                   <th>Paket</th>
                                   <th>Tempat Acara</th>
                                   <th>Tanggal Acara</th>
@@ -42,6 +35,7 @@
                               @foreach ($orders as $order)
                               <tr>
                                   <td>{{$loop->iteration}}</td>
+                                  <td>{{$order->user->name}}</td>
                                   <td>{{$order->nama}}</td>
                                   <td>{{$order->paket}}</td>
                                   <td>{{$order->tempat_acara}}</td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\testimoni;
+use App\Models\User;
 use Auth;
 class TestimoniController extends Controller
 {
@@ -14,7 +15,8 @@ class TestimoniController extends Controller
      */
     public function index()
     {
-        //
+        $testimonis = testimoni::orderBy('created_at', 'DESC')->get();
+        return view('admin.testimoni.index', compact('testimonis'));
     }
 
     /**
@@ -41,7 +43,7 @@ class TestimoniController extends Controller
         $user_id = Auth::user()->id;
         $testimoni = testimoni::where('user_id', $user_id)->with('testimoni')->count();
 
-        if($testimoni > 0){
+        if($testimoni > false){
             return redirect('/Digital-Invitation/#testimonies')->with('danger', "Anda Sudah Pernah Memasukan Testimoni.");
         }
 
@@ -93,8 +95,10 @@ class TestimoniController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(testimoni $Testimoni)
     {
-        //
+        $Testimoni->delete();
+
+        return redirect()->route('Testimoni.index')->with('delete', "Testimoni {$Testimoni->user->name} Sudah Terhapus");
     }
 }

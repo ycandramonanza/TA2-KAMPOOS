@@ -11,6 +11,145 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     {{-- fontawesome --}}
     <link rel="stylesheet" href="{{asset('fontawesome/css/all.min.css')}}">
+    {{-- Testimoni Css --}}
+    <style>
+
+.testimonials-v-2 {
+  padding: 100px 0;
+  overflow: hidden;
+}
+
+.testi-slide {
+  text-align: center;
+}
+
+.testi-slide img {
+  width: 92px;
+  height: 92px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.testi-slide p {
+  margin: 20px 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 30px;
+  font-style: italic;
+}
+
+.testi-slide i {
+  color: #32c5d2;
+  margin-right: 10px;
+}
+
+.testi-slide h4 {
+  font-weight: 400;
+  font-size: 16px;
+  font-family: "Lato", sans-serif !important;
+  font-style: italic;
+}
+
+.testi-slide .flex-control-paging li a {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -ms-box-shadow: none;
+  box-shadow: none;
+  background: transparent !important;
+  border: 2px solid rgb(99, 173, 143);
+  width: 8px;
+  height: 8px;
+}
+
+.testi-slide .flex-control-paging li a.flex-active {
+  background: transparent !important;
+  border: 2px solid rgb(99, 173, 143);
+}
+
+.quote {
+  position: relative;
+}
+
+.quote blockquote {
+  padding: 0px;
+  border: 0;
+  margin: 0;
+  font-size: 14px;
+  font-style: italic;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  border-radius: 8px;
+}
+
+.quote blockquote p {
+  color: #fff;
+  padding-top: 25px;
+  padding-bottom: 45px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.quote blockquote:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 90px;
+  width: 0;
+  height: 0;
+  border-top: 0.83333em solid #ccc;
+  border-right: 0.86667em solid transparent;
+}
+
+
+.quote.green blockquote {
+  background-color: rgb(99, 173, 143);
+}
+
+
+.quote.dark blockquote {
+  background-color: #555;
+}
+
+.quote.dark blockquote:before {
+  border-top-color: #555;
+}
+
+.quote-footer {
+  margin: 10px 0;
+}
+
+.quote-footer .quote-author-img img {
+  float: left;
+  max-width: 90px;
+  width: 90px;
+  height: 90px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  margin-left: -5px;
+  margin-top: -40px;
+  position: relative;
+  z-index: 1;
+  padding: 5px;
+  background-color: #fff;
+}
+
+.quote-footer h4 {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.quote-footer p {
+  font-weight: 400;
+  font-style: italic;
+  font-size: 14px;
+}
+    </style>
+    {{-- End Testimoni --}}
 </head>
 <body>
     {{-- Crousel --}}
@@ -24,7 +163,7 @@
         <div class="carousel-item active">
           <img src="{{asset('img/1.jpg')}}" style="filter: brightness(55%); height:500px" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
-            <img src="{{asset('img/logo2.png')}}" style="width:150px; margin-top:100px" alt="WeStory">
+            <img src="{{asset('img/logo2.png')}}" style="width:150px; margin-top:100px" alt="Digital-Invitation">
             <h1 style="margin-top:20px">Digital Invitations</h1>
             <p>Membuat Undangan Anda Menjadi Lebih Menarik</p>
           </div>
@@ -32,7 +171,7 @@
         <div class="carousel-item">
           <img src="{{asset('img/2.jpg')}}" style="filter: brightness(55%); height:500px" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
-            <img src="{{asset('img/logo3.png')}}" style="width:150px; margin-top:100px" alt="WeStory">
+            <img src="{{asset('img/logo3.png')}}" style="width:150px; margin-top:100px" alt="Digital-Invitation">
             <h1 style="margin-top:20px">Digital Invitations</h1>
             <p>Dalam Satu Tautan Yang Mudah Dikirimkan</p>
           </div>
@@ -40,7 +179,7 @@
         <div class="carousel-item">
           <img src="{{asset('img/3.jpg')}}" style="filter: brightness(55%); height:500px"  class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
-            <img src="{{asset('img/logo.png')}}" style="width:150px; margin-top:100px" alt="WeStory">
+            <img src="{{asset('img/logo.png')}}" style="width:150px; margin-top:100px" alt="Digital-Invitation">
             <h1 style="margin-top:20px">Digital Invitations</h1>
             <p>Solusi Undangan Yang Efisen di Era Digital</p>
           </div>
@@ -59,14 +198,14 @@
     <nav class="navbar navbar-expand-lg  sticky-top" style="background-color: rgb(99, 173, 143)
     ; color:white">
         <div class="container-fluid">
-          <h1 class="navbar-brand" href="#">Digital Invitations</h1>
+          <h2 class="navbar-brand" href="#">@guest Digital Invitations @endguest  @auth{{Auth::user()->name}}@endauth</h2>
           <button class="navbar-toggler"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"><i style="color: white" class="fas fa-bars"></i></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav mx-auto">
               <a id="menu" class="nav-link active" aria-current="page" href="#"><i class="fas fa-home"></i> Home</a>
-              <a  id="menu" class="nav-link" href="#"><i class="fas fa-rocket"></i> Fitur</a>
+              <a  id="menu" class="nav-link" href="#fitur"><i class="fas fa-rocket"></i> Fitur</a>
               <a  id="menu" class="nav-link" href="#"><i class="fas fa-tags"></i> Paket Harga</a>
               @if (Auth::guest())
               <a  id="menu" class="nav-link" href="{{route('login')}}"><i class="fas fa-sign-in-alt"></i> Login</a>
@@ -84,11 +223,11 @@
       </nav>
 
       {{-- Content  Fitur --}}
-      <div id="content1">
+      <section id="content1">
         <div class="container">
           <div  class="row mt-5">
             <div class="col" align="center">
-                <h2 >Fitur Yang Ada di <b style="font-size: 30px; color: rgb(82, 139, 116)">Digital Invitations</b></h2>
+                <h2 id="fitur" >Fitur Yang Ada di <b style="font-size: 30px; color: rgb(82, 139, 116)">Digital Invitations</b></h2>
             </div>
           </div>
           <br>
@@ -108,10 +247,10 @@
             @endforeach
         </div>
         </div>
-      </div>
+      </section>
           <br>
           <br>
-      <div id="content2">
+      <section id="content2" >
         <div class="container">
           <div class="row">
             <div class="col" align="center" style="color: white">
@@ -119,6 +258,11 @@
                 <div class="row">
                   <h4 style="font-size:20px">Paket Undangan Web <b style="color:rgb(99, 173, 143); font-size:25px">Digital Invitation </b> </h4>
                 </div>
+                @if (session('order'))
+                <div class="alert alert-success">
+                    {{ session('order') }}
+                </div>
+                 @endif
             </div>
           </div>
           <br>
@@ -161,7 +305,9 @@
                   @auth
                   <div class="row">
                     <div class="col">
-                        <button class="btn btn-success"><i class="fas fa-cart-plus"></i> Pesan Sekarang</button>
+                        <button id="order" type="button" data-bs-target="#staticBackdropOrder" data-bs-toggle="modal"  class="btn btn-success" data-order="{{$paket->nama_paket}}">
+                            <i class="fas fa-cart-plus"></i> Pesan Sekarang
+                        </button>
                     </div>
                 </div>
                   @endauth
@@ -172,18 +318,39 @@
               @endforeach
           </div>
         </div>
-      </div>
+      </section>
            {{-- content Testimoni --}}
-      <div class="div" id="testimoni">
-        <div class="row" style="margin-top:100px">
-            <div class="col">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, nam. Eos, rerum blanditiis natus earum tempora quidem provident alias, velit consequuntur neque quos. Illum corrupti commodi quisquam asperiores reprehenderit officiis explicabo, facilis voluptatum qui officia vitae suscipit repellendus sequi ab. Id minus consectetur distinctio vel quisquam a impedit, quasi officia non quis unde nisi provident praesentium exercitationem tenetur modi ad? Delectus, praesentium! Eum cum delectus dolorum? Repellat sunt enim optio, aut voluptates pariatur, eum necessitatibus quasi, nisi laboriosam maiores laudantium soluta animi veniam sint facilis nam? Omnis mollitia sint ex incidunt unde deleniti debitis illo voluptates voluptas fugit voluptatibus doloribus consequatur, aspernatur odit quas modi reprehenderit inventore fuga exercitationem error, suscipit officia? Ratione adipisci odio necessitatibus repellat est iusto? Laudantium vero nam deserunt fuga ex facere, tempore dolorum, alias nobis laboriosam itaque beatae eius? Voluptate doloremque esse, distinctio corporis commodi laborum tempore eum est atque consectetur, asperiores sequi a? Unde, facilis impedit in eaque ut, suscipit perferendis error eum laudantium earum, voluptatum aperiam adipisci accusantium qui. Temporibus, recusandae qui facilis ut fuga molestias perferendis obcaecati exercitationem delectus nam labore commodi reprehenderit quae, officia omnis laborum iure id debitis? Commodi voluptatem optio voluptates, magni ipsa ipsam. Numquam, voluptates eius. Praesentium veniam nihil voluptates possimus quam cumque qui culpa ducimus ipsam soluta, porro quibusdam sit explicabo ad architecto. Molestias, sit quis asperiores saepe eligendi assumenda est soluta praesentium, tempore voluptatum non! Nulla, odio! Voluptatum omnis dolorum eaque similique ducimus sequi est, esse reprehenderit ipsa a, aliquid obcaecati eos dolore nemo repellat, voluptate veritatis quam commodi ullam. Libero fugit hic totam deserunt officia asperiores ad repudiandae! Non temporibus inventore expedita exercitationem aliquid soluta, rem reprehenderit aperiam accusantium doloribus pariatur provident eos ab nulla atque mollitia nihil eaque. Et aspernatur molestias vero maiores tenetur fugiat, velit alias debitis. Consequuntur ratione natus unde nulla aut!
-            </div>
+      <section id="content3">
+        <div class="container">
+          <div class="row" style="margin-top: 50px">
+        <div class="col-12" align="center" style="margin-bottom: 30px">
+          <h2 style="font-size: 20px">Kata Mereka Tentang <span style="color:rgb(99, 173, 143);; font-size:30px"><b>Digital-Invitation</b></span></h2>
         </div>
+
+        @foreach ($testimonis as $testimoni)
+        <div class="col-md-4 margin-btm-20 testimonis">
+            <div class="quote green">
+                <blockquote>
+                    <p>
+                       {{$testimoni->testimoni}}                        
+                    </p>
+                </blockquote>                        
+            </div>
+            <div class="quote-footer text-right">
+                <div class="quote-author-img">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                </div>
+                <h4>{{$testimoni->user->name}}</h4>
+                <p>
+                    <strong>{{$testimoni->created_at->format('d-M-Y')}}</strong>
+                </p>
+            </div>
+        </div><!--colored quote box col-->
+        @endforeach
+    </div><!--testimonials row-->   
     </div>
+      </section>
       @auth
-          
-      
       @if (Auth::user()->role == 'pembeli')
            {{-- Form Testimoni --}}
       <div id="testimonies">
@@ -220,15 +387,58 @@
     </div>
       @endif
       @endauth
-     
-     
-          
-        
-
+  
+      {{-- Modal Order --}}
+      <div class="modal fade" id="staticBackdropOrder" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Tambah Order</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                  <form action="{{route('Order.store')}}" method="POST">
+                    @csrf
+                      <div class="row">
+                          <div class="col">
+                            <div class="mb-3">
+                              <label for="exampleFormControlInput1" class="form-label">Nama Pengantin / Nama Pemilik Acara</label>
+                              <input type="text" name="nama" class="form-control" id="exampleFormControlInput1" placeholder="Ex : Rudi & Siti">
+                            </div>
+                            <div class="mb-3">
+                              <label for="exampleFormControlInput1" class="form-label">Paket</label>
+                              <input type="text" name="paket" id="paket" readonly class="form-control" id="exampleFormControlInput1" >
+                            </div>
+                            <div class="mb-3">
+                              <label for="exampleFormControlInput1" class="form-label">Tempat Acara</label>
+                              <input type="text" name="tempat_acara" class="form-control" id="exampleFormControlInput1">
+                            </div>
+                            <div class="mb-3">
+                              <label for="exampleFormControlInput1" class="form-label">Tanggal Acara</label>
+                              <input type="date" name="tanggal_acara" class="form-control" id="exampleFormControlInput1">
+                            </div>
+                          </div>
+                      </div>
+                 
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+              <button type="submit" class="btn btn-primary">Simpan</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{-- End Modal Order --}}
+      <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
+      <script src="{{asset('js/bootstrap.min.js')}}"></script>
       
-   
+      <script>
+           $(document).on("click", "#order" ,function(){
+                var paket= $(this).data('order');
+                $('#paket').val(paket);
+           });
+      </script>
 
-   <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
-   <script src="{{asset('fontawesome/js/all.min.js')}}"></script>
+  
 </body>
 </html>

@@ -30,7 +30,8 @@
                           <thead>
                               <tr>
                                   <th>No</th>
-                                  <th>Nama Pembeli</th>
+                                  <th>Nama Pemesan</th>
+                                  <th>Nama Pengantin / Pemilik Acara</th>
                                   <th>Data Invitation</th>
                                   <th></th>
                               </tr>
@@ -39,6 +40,7 @@
                               @foreach ($invitations as $invitation)
                               <tr>
                                   <td>{{$loop->iteration}}</td>
+                                  <td>{{$invitation->user->name}}</td>
                                   <td>{{$invitation->nama}}</td>
                                   <td><a href="{{route('Recipient.index')}}" class="btn btn-primary">
                                           Data Invitation
