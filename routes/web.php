@@ -25,6 +25,7 @@ Route::resource('Fitur', FiturController::class);
 // CRUD Paket
 Route::resource('Paket', PaketController::class);
 // CRUD INVITATION
+
 Route::resource('Invitation', InvitationController::class);
 // CRUD ORDER
 Route::resource('Order', OrderController::class);
@@ -34,8 +35,14 @@ Route::resource('Pembeli', PembeliController::class);
 Route::resource('Recipient', RecipientController::class);
 // CRUD TESTIMONI
 Route::resource('Testimoni', TestimoniController::class);
+// Undangan
+Route::get('/KartuUndangan/{id}', 'UndanganController@undangan' )->name('undangan');
+Route::get('/Undangan', 'UndanganController@index')->name('undangan.index');
+Route::get('/Undangan/{id}', 'UndanganController@create')->name('undangan.create');
+Route::post('/Undangan/store', 'UndanganController@store')->name('undangan.store');
 
-Route::get('Undangan/{id}', 'TemaController@silver')->name('undangan.silver');
+
+// Route::get('Undangan/{id}', 'TemaController@silver')->name('undangan.silver');
 
 
 Auth::routes();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\Models\invitation;
 use App\Models\order;
 use App\Models\User;
@@ -16,8 +17,15 @@ class InvitationController extends Controller
      */
     public function index()
     {
-        $invitations = invitation::with('user')->get();
-        return view('invitation.index', compact('invitations'));
+        if(!Auth::user()){
+            return redirect('/Digital-Invitation');
+        }elseif(Auth::user()->role == 'admin'){
+            $invitations = invitation::with('user')->get();
+            return view('invitation.index', compact('invitations'));
+        }else{
+            return redirect('/Digital-Invitation');
+        }
+       
     }
 
     /**
@@ -99,9 +107,10 @@ class InvitationController extends Controller
      */
     public function destroy(invitation $Invitation)
     {
+        $order = order::where('nama',  $Invitation->nama)->first();
+
         $Invitation->delete();
 
-        $order = order::where('nama',  'Khaerul Fahmi')->first();
         $order->update([
             'status' => 0,
         ]);

@@ -4,14 +4,7 @@
 <link rel="stylesheet" href="{{asset('css/jquery.dataTables.min.css')}}">
 <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/style.css')}}">
-                <div class="row">
-                    <div class="col">
-                        <button style="font-size: 14px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            <i class="fas fa-plus"></i> Tambah Invitation
-                          </button>
-                    </div>
-                </div>
-                <br>
+               
                 @if (session('pesan'))
                     <div class="alert alert-success">
                         {{ session('pesan') }}
@@ -32,7 +25,7 @@
                                   <th>No</th>
                                   <th>Nama Pemesan</th>
                                   <th>Nama Pengantin / Pemilik Acara</th>
-                                  <th>Data Invitation</th>
+                                  <th>Create Undangan</th>
                                   <th></th>
                               </tr>
                           </thead>
@@ -42,9 +35,9 @@
                                   <td>{{$loop->iteration}}</td>
                                   <td>{{$invitation->user->name}}</td>
                                   <td>{{$invitation->nama}}</td>
-                                  <td><a href="{{route('Recipient.index')}}" class="btn btn-primary">
-                                          Data Invitation
-                                      </a></td>
+                                  <td>
+                                    <a href="{{route('undangan.create', $invitation->id)}}" class="btn btn-success">Create Undangan</a>
+                                  </td>
                                   <form action="{{route('Invitation.destroy', $invitation->id)}}" method="POST">
                                     @method('DELETE')
                                     @csrf

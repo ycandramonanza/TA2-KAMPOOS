@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->string('paket');
             $table->string('tempat_acara');
             $table->date('tanggal_acara');
+            $table->string('no_hp');
             $table->integer('status');
             $table->timestamps();
 

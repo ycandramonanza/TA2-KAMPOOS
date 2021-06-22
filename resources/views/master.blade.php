@@ -86,6 +86,7 @@
                                 <li><a href="{{route('Testimoni.index')}}"><i class="far fa-comments"></i> Testimoni</a></li>
                                 <li><a href="{{route('Invitation.index')}}"><i class="fa fa-angle-double-right"></i>Invitation</a></li>
                                 <li><a href="{{route('Order.index')}}"><i class="fa fa-angle-double-right"></i>Orders</a></li>
+                                <li><a href="{{route('undangan.index')}}"><i class="fa fa-angle-double-right"></i>Undangan</a></li>
                             </ul>
                         </li>
                         <li>

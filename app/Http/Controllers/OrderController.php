@@ -43,7 +43,8 @@ class OrderController extends Controller
             'nama'  => 'required',
             'paket' => 'required',
             'tempat_acara' => 'required',
-            'tanggal_acara' => 'required'
+            'tanggal_acara' => 'required',
+            'no_hp'        => 'required'
         ]);
 
         order::create([
@@ -52,6 +53,7 @@ class OrderController extends Controller
             'paket'       => $validated['paket'],
             'tempat_acara' => $validated['tempat_acara'],
             'tanggal_acara'=> $validated['tanggal_acara'],
+            'no_hp'        => $validated['no_hp'],
             'status'       => 0
         ]);
 
