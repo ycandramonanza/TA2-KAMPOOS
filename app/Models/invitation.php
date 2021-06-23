@@ -16,4 +16,8 @@ class invitation extends Model
     public function order(){
        return $this->belongsTo(order::class, 'order_id', 'id');
     }
+    public function undangan(){
+      return $this->hasOne(undangan::class, 'invitation_id', 'id');
+   }
+
 }

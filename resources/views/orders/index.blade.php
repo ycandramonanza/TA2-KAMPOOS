@@ -27,6 +27,7 @@
                                   <th>Paket</th>
                                   <th>Tempat Acara</th>
                                   <th>Tanggal Acara</th>
+                                  <th>No Telepon/Wa</th>
                                   <th>Confirm</th>
                                   <th></th>
                               </tr>
@@ -40,6 +41,7 @@
                                   <td>{{$order->paket}}</td>
                                   <td>{{$order->tempat_acara}}</td>
                                   <td>{{$order->tanggal_acara}}</td>
+                                  <td>{{$order->no_hp}}</td>
                                   <form action="{{route('Invitation.store')}}" method="POST">
                                     @csrf
                                   <td>

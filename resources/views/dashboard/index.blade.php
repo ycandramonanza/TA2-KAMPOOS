@@ -417,6 +417,10 @@
                               <label for="exampleFormControlInput1" class="form-label">Tanggal Acara</label>
                               <input type="date" name="tanggal_acara" class="form-control" id="exampleFormControlInput1">
                             </div>
+                            <div class="mb-3">
+                              <label for="exampleFormControlInput1" class="form-label">No Handphone / WA</label>
+                              <input type="text" name="no_hp" class="form-control" id="exampleFormControlInput1">
+                            </div>
                           </div>
                       </div>
                  

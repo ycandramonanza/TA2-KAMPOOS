@@ -15,7 +15,9 @@ class PaketController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->role == 'admin'){
+        if(!Auth::user()){
+            return redirect('/Digital-Invitation');
+        }elseif(Auth::user()->role == 'admin'){
             $pakets = paket::all();
             return view('admin.paket.index', compact('pakets'));
         }else{
