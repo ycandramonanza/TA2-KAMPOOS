@@ -101,7 +101,7 @@ class InvitationController extends Controller
     {
         $Invitation->delete();
 
-        $order = order::where('nama',  'Khaerul Fahmi')->first();
+        $order = order::where('nama')->first();
         $order->update([
             'status' => 0,
         ]);
