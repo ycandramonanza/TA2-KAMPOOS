@@ -44,6 +44,8 @@ class PaketController extends Controller
      */
     public function store(PaketRequest $request)
     {
+        
+
         $data = $request->all();
         $data['image'] = $request->file('image');
         $filename = time() . '.' . $data['image']->getClientOriginalExtension();
@@ -86,9 +88,9 @@ class PaketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(paket $Paket)
     {
-        //
+        return view('admin.paket.edit', compact('Paket'));
     }
 
     /**
@@ -98,9 +100,66 @@ class PaketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, paket $Paket)
+    {   
+
+
+        $data = $request->all();
+
+        if($request->image){
+
+            if(\File::exists('storage/paket/'.$Paket->image)){
+                \File::delete('storage/paket/'.$Paket->image);
+            }
+            $data['image'] = $request->file('image');
+            $filename = time() . '.' . $data['image']->getClientOriginalExtension();
+            $request->file('image')->storeAs('public/paket/'. $filename,  ''); 
+
+            
+                
+                $Paket->update([
+                    'nama_paket'    => $request->nama_paket,
+                    'image'         => $filename,
+                    'harga'         => $request->harga,
+                    'harga_diskon'  => $request->harga_diskon,
+                    'fitur1'        => $request->fitur1,
+                    'fitur2'        => $request->fitur2,
+                    'fitur3'        => $request->fitur3,
+                    'fitur4'        => $request->fitur4,
+                    'fitur5'        => $request->fitur5,
+                    'fitur6'        => $request->fitur6,
+                    'fitur7'        => $request->fitur7,
+                    'fitur8'        => $request->fitur8,
+                    'fitur9'        => $request->fitur9,
+                    'fitur10'        => $request->fitur10
+                ]);
+        
+                return redirect()->route('Paket.index')->with('pesan', "Data Paket Berhasil di Ubah.");
+        }else{
+
+            $Paket->update([
+                'nama_paket'    => $request->nama_paket,
+                'harga'         => $request->harga,
+                'harga_diskon'  => $request->harga_diskon,
+                'fitur1'        => $request->fitur1,
+                'fitur2'        => $request->fitur2,
+                'fitur3'        => $request->fitur3,
+                'fitur4'        => $request->fitur4,
+                'fitur5'        => $request->fitur5,
+                'fitur6'        => $request->fitur6,
+                'fitur7'        => $request->fitur7,
+                'fitur8'        => $request->fitur8,
+                'fitur9'        => $request->fitur9,
+                'fitur10'        => $request->fitur10
+            ]);
+    
+            return redirect()->route('Paket.index')->with('pesan', "Data Paket Berhasil di Ubah.");
+
+        }
+     
+      
+      
+    
     }
 
     /**

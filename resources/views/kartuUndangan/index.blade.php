@@ -308,7 +308,7 @@
 	<script src="https://wedding2.fadly.xyz/wedding/js/main.js"></script>
 
 	<script>
-    var d = new Date(new Date("July 18, 2021 07:30:00").getTime());
+    var d = new Date(new Date("June 24, 2021 07:30:00").getTime());
 
     // default example
     simplyCountdown('.simply-countdown-one', {

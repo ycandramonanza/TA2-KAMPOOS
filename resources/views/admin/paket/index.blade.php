@@ -1,9 +1,11 @@
 @extends('master')
 @section('content')
  {{-- Data Table --}}
+ 
 <link rel="stylesheet" href="{{asset('css/jquery.dataTables.min.css')}}">
 <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/style.css')}}">
+<meta name="csrf-token" content="{{ csrf_token() }}">
                 <div class="row">
                     <div class="col">
                         <button style="font-size: 14px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -45,15 +47,15 @@
                                   <td>{{$loop->iteration}}</td>
                                   <td><img src="{{asset('storage/paket/'.$paket->image)}}" width="80px" alt=""></td>
                                   <td>{{$paket->nama_paket}}</td>
-                                  <td>{{$paket->harga}}</td>
-                                  <td>{{$paket->harga_diskon}}</td>
+                                  <td>Rp.{{number_format($paket->harga)}}</td>
+                                  <td>Rp.{{number_format($paket->harga_diskon)}}</td>
                                   <td>
                                     <button class="btn btn-primary" type="button" id="lihatFitur" data-bs-toggle="modal" data-bs-target="#staticBackdropLihatFitur" data-nama ="{{$paket->nama_paket}}" data-fitur1="{{$paket->fitur1}}" data-fitur2="{{$paket->fitur2}}" data-fitur3="{{$paket->fitur3}}" data-fitur4="{{$paket->fitur4}}" data-fitur5="{{$paket->fitur5}}" data-fitur6="{{$paket->fitur6}}" data-fitur7="{{$paket->fitur7}}" data-fitur8="{{$paket->fitur8}}" data-fitur9="{{$paket->fitur9}}" data-fitur10="{{$paket->fitur10}}">
                                       <i class="fas fa-rocket"></i>
                                     </button>
                                   </td>
                                   <td>
-                                    <button style="font-size: 14px;" id="editFitur" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdropEdit" data-namas ="{{$paket->nama_paket}}" data-harga="{{$paket->harga}}" data-diskon="{{$paket->harga_diskon}}" data-1="{{$paket->fitur1}}" data-fiturDua="{{$paket->fitur2}}" data-fiturTiga="{{$paket->fitur3}}" data-fiturEmpat="{{$paket->fitur4}}" data-fiturLima="{{$paket->fitur5}}" data-fiturEnam="{{$paket->fitur6}}" data-fiturTujuh="{{$paket->fitur7}}" data-fiturDelapan="{{$paket->fitur8}}" data-fiturSembilan="{{$paket->fitur9}}" data-fiturSepuluh="{{$paket->fitur10}}">
+                                    <button style="font-size: 14px;" id="editFitur" type="button" class="btn btn-success edit-fitur" data-bs-toggle="modal" data-bs-target="#modal-edit" data-route ="{{route('Paket.update',$paket->id )}}" data-id ="{{$paket->id}}" data-namas ="{{$paket->nama_paket}}" data-harga="{{$paket->harga}}" data-diskon="{{$paket->harga_diskon}}" data-1="{{$paket->fitur1}}" data-2="{{$paket->fitur2}}" data-3="{{$paket->fitur3}}" data-4="{{$paket->fitur4}}" data-5="{{$paket->fitur5}}" data-6="{{$paket->fitur6}}" data-7="{{$paket->fitur7}}" data-8="{{$paket->fitur8}}" data-9="{{$paket->fitur9}}" data-10="{{$paket->fitur10}}">
                                       <i class="fas fa-edit"></i>
                                     </button>
                                   </td>
@@ -76,17 +78,19 @@
                 <!-- Button trigger modal -->
 
   
-  <!-- Modal Create-->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  {{-- Modal Create --}}
+   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel">Tambah Paket</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-            <form action="{{route('Paket.store')}}" method="POST" enctype="multipart/form-data">
-                @csrf
+        <form action="{{route('Paket.store')}}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="modal-body">   
+            <div class="row">
+              <div class="col">
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Gambar Paket</label>
                   <input type="file" name="image" class="form-control @error('image') is-invalid @enderror"  aria-describedby="emailHelp">
@@ -117,7 +121,7 @@
                 </div>
                 <div class="form-check">
                   <label class="form-check-label" for="fitur1">Fitur 1 :</label>
-                  <input class="form-check-input" type="checkbox" name="fitur1" value="Revisi Sepuasnya" id="fitur1">
+                  <input class="form-check-input" type="checkbox" name="fitur1" value="Revisi Sepuasnya"   id="fitur1">
                   <label class="form-check-label" for="fitur1">
                     Revisi Sepuasnya
                   </label>
@@ -193,6 +197,8 @@
                     Fitur RSVP (Konfirmasi kehadiran tamu)
                   </label>
                 </div>
+              </div>
+            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -201,129 +207,25 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> 
 
   {{-- Modal Edit --}}
-   <div class="modal fade" id="staticBackdropEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+   <div class="modal fade" id="modal-edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel">Edit Paket</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <form action="" method="POST" enctype="multipart/form-data" id="form-edit">
+          @method('PATCH')
+          @csrf
         <div class="modal-body">
-            <form action="{{route('Paket.store')}}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Gambar Paket</label>
-                  <input type="file" name="image" class="form-control @error('image') is-invalid @enderror"  aria-describedby="emailHelp">
-                  @error('image')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                  @enderror
-                </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Nama Paket</label>
-                  <input type="text" id="namaPaket" name="nama_paket" class="form-control @error('nama_paket') is-invalid @enderror">
-                  @error('nama_paket')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                  @enderror
-                </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Harga</label>
-                  <input type="text" name="harga" id="harga" class="form-control @error('harga') is-invalid @enderror">
-                  @error('harga')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                  @enderror
-                </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Harga Diskon</label>
-                  <input type="text" name="harga_diskon" id="diskon" class="form-control @error('harga_diskon') is-invalid @enderror">
-                  @error('harga_diskon')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                  @enderror
-                </div>
-                <div class="form-check">
-                  <label class="form-check-label" for="one">Fitur 1 :</label>
-                  <input class="form-check-input" id="one" type="checkbox"  name="fitur1" value="Revisi Sepuasnya" {{old('fitur1') == "Revisi Sepuasnya" ? 'checked' : ''}}>
-                  <label class="form-check-label" for="one">
-                    Revisi Sepuasnya
-                  </label>
-                </div>
-                <div class="form-check">
-                  <label class="form-check-label" for="flexCheckDefault">Fitur 2 :</label>
-                  <input class="form-check-input" type="radio" name="fitur2" value="5 Foto Album" id="">
-                  <label class="form-check-label" for="">
-                    5 Foto Album,
-                  </label>
-                  <input class="form-check-input" type="radio" name="fitur2" value="10 Foto Album" id="">
-                  <label class="form-check-label" for="">
-                    10 Foto Album,
-                  </label>
-                  <input class="form-check-input" type="radio" name="fitur2" value="20 Foto Album" id="">
-                  <label class="form-check-label" for="">
-                    20 Foto Album
-                  </label>
-                </div>
-                <div class="form-check">
-                  <label class="form-check-label" for="fitur3">Fitur 3 :</label>
-                  <input class="form-check-input" type="checkbox" name="fitur3" value="Navigasi Lokasi" id="">
-                  <label class="form-check-label" for="">
-                    Navigasi Lokasi
-                  </label>
-                </div>
-                <div class="form-check">
-                  <label class="form-check-label" for="fitur4">Fitur 4 :</label>
-                  <input class="form-check-input" type="checkbox" name="fitur4" value="Hitung Mundur" id="">
-                  <label class="form-check-label" for="">
-                    Hitung Mundur
-                  </label>
-                </div>
-                <div class="form-check">
-                  <label class="form-check-label" for="fitur5">Fitur 5 :</label>
-                  <input class="form-check-input" type="checkbox" name="fitur5" value="Kolom Ucapan" id="">
-                  <label class="form-check-label" for="">
-                    Kolom Ucapan
-                  </label>
-                </div>
-                <div class="form-check">
-                  <label class="form-check-label" for="fitur6">Fitur 6 :</label>
-                  <input class="form-check-input" type="checkbox" name="fitur6" value="Request Musik" id="">
-                  <label class="form-check-label" for="">
-                    Request Musik
-                  </label>
-                </div>
-                <div class="form-check">
-                  <label class="form-check-label" for="fitur7">Fitur 7 :</label>
-                  <input class="form-check-input" type="checkbox" name="fitur7" value="Fitur Kepada" id="">
-                  <label class="form-check-label" for="">
-                    Fitur Kepada
-                  </label>
-                </div>
-                <div class="form-check">
-                  <label class="form-check-label" for="fitur8">Fitur 8 :</label>
-                  <input class="form-check-input" type="checkbox" name="fitur8" value="Video Gallery" id="">
-                  <label class="form-check-label" for="">
-                    Video Gallery
-                  </label>
-                </div>
-                <div class="form-check">
-                  <label class="form-check-label" for="fitur9">Fitur 9 :</label>
-                  <input class="form-check-input" type="checkbox" name="fitur9" value="Fitur Berikan Angpao" id="">
-                  <label class="form-check-label" for="">
-                    Fitur Berikan Angpao
-                  </label>
-                </div>
-                <div class="form-check">
-                  <label class="form-check-label" for="fitur10">Fitur 10 :</label>
-                  <input class="form-check-input" type="checkbox" name="fitur10" value="Fitur RSVP (Konfirmasi kehadiran tamu)" id="">
-                  <label class="form-check-label" for="">
-                    Fitur RSVP (Konfirmasi kehadiran tamu)
-                  </label>
-                </div>
+            
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-          <button type="submit" class="btn btn-primary">Simpan</button>
+          <button type="submit" class="btn btn-primary btn-update">Simpan</button>
         </form>
         </div>
       </div>
@@ -363,73 +265,11 @@
  {{-- end Modal Lihat Fitur --}}
 
 
+
+
         {{-- <script src="{{asset('js/jquery.dataTables.min.js')}}"></script> --}}
         <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
         <script src="{{asset('js/bootstrap.min.js')}}"></script>
-
-           {{-- Modal Edit Fitur --}}
-           <script>
-            $(document).on("click", "#editFitur" ,function(){
-                var namaPaket = $(this).data('namas');
-                var harga = $(this).data('harga');
-                var diskon = $(this).data('diskon');
-                var one= $(this).data('1');
-                var fiturDua = $(this).data('fiturDua');
-                var fiturTiga = $(this).data('fiturTiga');
-                var fiturEmpat = $(this).data('fiturEmpat');
-                var fiturLima = $(this).data('fiturLima');
-                var fiturEnam = $(this).data('fiturEnam');
-                var fiturTujuh = $(this).data('fiturTujuh');
-                var fiturDelapan = $(this).data('fiturDelapan');
-                var fiturSembilan = $(this).data('fiturSembilan');
-                var fiturSepuluh = $(this).data('fiturSepuluh');
-                // console.log(namaPaket );
-                // console.log(harga );
-                // console.log(diskon);
-                // console.log(one);
-                // console.log(fiturDua );
-                // console.log(fiturTiga);
-                // console.log(fiturEmpat);
-                // console.log(fiturLima);
-                // console.log(fiturEnam);
-                // console.log(fiturTujuh);
-                // console.log(fiturDelapan;
-                // console.log(fiturSembilan);
-                // console.log(fiturSepuluh);
-                $('#namaPaket').val(namaPaket);
-                $('#harga').val(harga);
-                $('#diskon').val(diskon);
-                // $('#one').val(one);
-                let oneCek       = document.getElementById('one');
-               console.log(oneCek);
-                $('#fitur2').val(fiturDua);
-                $('#fitur3').val(fiturTiga);
-                $('#fitur4').val(fiturEmpat);
-                $('#fitur5').val(fiturLima);
-                $('#fitur6').val(fiturEnam);
-                $('#fitur7').val(fiturTujuh);
-                $('#fitur8').val(fiturDelapan);
-                $('#fitur9').val(fiturSembilan);
-                $('#fitur10').val(fiturSepuluh);
-               
-                // $('#3').text(fitur3);
-                // $('#4').text(fitur4);
-                // $('#5').text(fitur5);
-                // $('#6').text(fitur6);
-                // $('#7').text(fitur7);
-                // $('#8').text(fitur8);
-                // $('#9').text(fitur9);
-                // $('#10').text(fitur10);
-            });
-                  
-
-           
-        </script>
-
-
-
-
-
 
 
 
@@ -447,16 +287,6 @@
                   var fitur8 = $(this).data('fitur8');
                   var fitur9 = $(this).data('fitur9');
                   var fitur10 = $(this).data('fitur10');
-                  // console.log(fitur1);
-                  // console.log(fitur2);
-                  // console.log(fitur3);
-                  // console.log(fitur4);
-                  // console.log(fitur5);
-                  // console.log(fitur6);
-                  // console.log(fitur7);
-                  // console.log(fitur8);
-                  // console.log(fitur9);
-                  // console.log(fitur10);
                   $('#nama').text(nama);
                   $('#1').text(fitur1);
                   $('#2').text(fitur2);
@@ -484,71 +314,97 @@
 
                   }
             
-              })
-
-             
-          </script>
+              });
 
 
+        //  Modal Edit 
+              
+        $('.edit-fitur').on('click',function(){
 
-         {{-- Modal Edit --}}
-        <script>
-          $(document).on("click", "#cek" ,function(){
-              var image = $(this).data('image');
-              var namaFitur = $(this).data('nama');
-              var desc = $(this).data('desc');
-              var route = $(this).data('route');
-              $('#route').attr('action', route);
-              $('#image').attr('src', image);
-              $('#namaFitur').val(namaFitur);
-              $('#desc').text(desc);
-          })
-      </script>
+         
+            let route     = $(this).data('route');
+            let id        = $(this).data('id');
+            let namaFitur = $(this).data('namas');
+            let harga     = $(this).data('harga');
+            let diskon    = $(this).data('diskon');
+            let data1     = $(this).data('1');
+            let data2     = $(this).data('2');
+            let data3     = $(this).data('3');
+            let data4     = $(this).data('4');
+            let data5     = $(this).data('5');
+            let data6     = $(this).data('6');
+            let data7     = $(this).data('7');
+            let data8     = $(this).data('8');
+            let data9     = $(this).data('9');
+            let data10     = $(this).data('10');  
+           
+            $('#form-edit').attr('action', route);
 
-      {{-- Data Table --}}
-        <script>
+
+
+
+            $.ajax({
+                url   : `/Paket/${id}/edit `,
+                method:"GET",
+                success: function(data){
+                    $('#modal-edit').find('.modal-body').html(data)
+                    $('#modal-edit').modal('show')
+                },
+                error:function(error){
+                  console.log(error)
+                }
+
+            });
+
+            
+            
+        });
+
+        // End Modal Edit
+        $('.btn-update').on('click',function(){
+
+        // let id        = $('#form-edit').find('#id_data').val();
+        // let editId    = document.getElementById('form-edit');
+      
+        // console.log(editId);
+
+
+
+        // let formData  = $('#form-edit').serialize();
+        // $.ajaxSetup({
+          //     headers: {
+          //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          //     }
+          // });
+
+        // $.ajax({
+        //     url   : `/Paket/${id}`,
+        //     method:"PATCH",
+        //     data:formData,
+        //     dataType : 'json',
+        //     success: function(data){
+        //       console.log(data);
+        //         // $('#modal-edit').find('.modal-body').html(data)
+        //         // $('#modal-edit').modal('show')
+        //     },
+        //     error:function(error){
+        //       console.log(error)
+        //     }
+
+        // })
+
+        });
+        // Update Edit
+
+        // End Update Edit
+
+
+      // Data Table 
             $(document).ready( function () {
                 $('#table_id').DataTable();
             } );
         </script>
 
-        {{-- Ajax Validasi --}}
-
-        {{-- <script> --}}
-{{-- 
-          // $(function(){
-              // $("#main_form").on('submit', function(e){
-              //   e.preventDefault();
-
-              //     $.ajax({
-              //         url:$(this).attr('action'),
-              //         method:$(this).attr('method'),
-              //         data:new FormData(this),
-              //         processData:false,
-              //         dataType:'json',
-              //         contentType:false,
-              //         beforeSend:function(){
-              //             $(document).find('span.error-text').text('')
-              //         },
-              //         success:function(data){
-              //             if(data.status == 0){
-              //               $.each(data.error, function(prefix, val){
-              //                 $('span.'+prefix+'_error').text(val[0]);
-              //               });
-              //             }else{
-              //               $('#main_form')[0].reset();
-              //               alert(data.msg);
-              //             }
-              //         }
-              //     });
-
-
-              // });
-          }); --}}
-
-
-
-        {{-- // </script> --}}
 
 
 @endsection
